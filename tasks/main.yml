@@ -1,0 +1,14 @@
+---
+- name: Update VM memory count
+  vmware_guest:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    validate_certs: no
+    name: "{{ vm_name }}"
+    state: present
+    hardware:
+      hotadd_cpu: true
+      hotadd_memory: true
+      memory_mb: "{{ vm_mem }}"
+  delegate_to: localhost
